@@ -7,10 +7,15 @@
 #
 #
 ################################################################################
-
+#%%
 import numpy as np
 import bfield
 import matplotlib.pyplot as plt
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 # Loops ( Ra,I0,Nturns, Xcenter,Ycenter,Zcenter, EulerAngles1,2,3 )
 Loops = np.array([[ 0.05,100,1,  0.04,0,0, 90,0,0 ],
@@ -46,6 +51,6 @@ plt.contourf(np.transpose(XX),np.transpose(YY),Bnorm,30)
 plt.colorbar()
 plt.xlabel('X [m]')
 plt.ylabel('Y [m]')
-plt.title('B-field magnitude [T] - Multiple Loops')
-plt.savefig('ex05_plot_multiple_loops.png',dpi=150)
+plt.title('B-field magnitude [T] - Multiple Loops \n (run by Toyo at '+current_time+')')
+plt.savefig('ex05_plot_multiple_loops (run by Toyo at '+current_time+').png',dpi=150)
 plt.show()

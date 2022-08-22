@@ -7,11 +7,16 @@
 #
 #
 ################################################################################
-
+#%%
 import numpy as np
 import bfield
 import matplotlib.pyplot as plt
 d2r = np.pi/180.0
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 # Define Loops, using the following convention
 # [ Ra,I0,Nturns, Xcenter,Ycenter,Zcenter, EulerAnglesDegrees ]
@@ -41,6 +46,6 @@ plt.contourf(np.transpose(XX),np.transpose(YY),Bnorm,30)
 plt.colorbar()
 plt.xlabel('X [m]')
 plt.ylabel('Y [m]')
-plt.title('B-field magnitude [T] - Simple Magnetic Mirror')
-plt.savefig('ex04_plot_simple_mirror.png',dpi=150)
+plt.title('B-field magnitude [T] - Simple Magnetic Mirror \n (run by Toyo at '+current_time+')')
+plt.savefig('ex04_plot_simple_mirror (run by Toyo at '+current_time+').png',dpi=150)
 plt.show()

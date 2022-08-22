@@ -7,10 +7,14 @@
 #
 #
 ################################################################################
-
+#%%
 import numpy as np
 import bfield
 import matplotlib.pyplot as plt
+from datetime import datetime
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 # Loops ( Ra,I0,Nturns, Xcenter,Ycenter,Zcenter, EulerAngles1,2,3 )
 Loops = np.array([[ 0.25,2.5e4,1,  0.05,0,0, 90,0,0 ],
@@ -41,6 +45,7 @@ plt.plot(X,Bnorm[:,1]*1e4)
 plt.ylim(250,750)
 plt.xlabel('Axis [m]')
 plt.ylabel('B [Gauss]')
-plt.title('B-field magnitude [T] - pisces')
-plt.savefig('ex06_plot_pisces_loops.png',dpi=150)
+plt.title('B-field magnitude [T] - pisces \n (run by Toyo at '+current_time+')')
+plt.savefig('ex06_plot_pisces_loops (run by Toyo at '+current_time+').png',dpi=150)
+plt.grid()
 plt.show()
