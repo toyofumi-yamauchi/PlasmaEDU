@@ -7,10 +7,15 @@
 #
 #
 ################################################################################
-
+#%%
 import numpy as np
 import bfield
 import matplotlib.pyplot as plt
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 # Current Loop
 Ra = 0.05
@@ -37,6 +42,6 @@ plt.contourf(np.transpose(XX),np.transpose(YY),Bnorm,30)
 plt.colorbar()
 plt.xlabel('X [m]')
 plt.ylabel('Y [m]')
-plt.title('B-field magnitude [T] of a Current Loop')
-plt.savefig('ex03_plot_loopxyz_magnitude.png',dpi=150)
+plt.title('B-field magnitude [T] of a Current Loop \n (run by Toyo at '+current_time+')')
+plt.savefig('ex03_plot_loopxyz_magnitude (run by Toyo at '+current_time+').png',dpi=150)
 plt.show()
