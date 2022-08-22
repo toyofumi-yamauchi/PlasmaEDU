@@ -7,10 +7,15 @@
 #
 #
 ################################################################################
-
+#%% 
 import numpy as np
 import matplotlib.pyplot as plt
 import bfield
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 # Current Loop
 Ra    = 0.05 # [m] Loop Radius
@@ -34,8 +39,8 @@ plt.contourf(np.transpose(RR),np.transpose(ZZ),Bnorm,30)
 plt.colorbar()
 plt.xlabel('R [m]')
 plt.ylabel('Z [m]')
-plt.title('B-field magnitude [T] of a Current Loop')
-plt.savefig('ex01_plot_loopbrz_magnitude.png',dpi=150)
+plt.title('B-field magnitude [T] of a Current Loop (Toyo)')
+plt.savefig('ex01_plot_loopbrz_magnitude (Toyo).png',dpi=150)
 plt.show()
 
 # Note on Numpy's contourf([X, Y,] Z, [levels], **kwargs):
