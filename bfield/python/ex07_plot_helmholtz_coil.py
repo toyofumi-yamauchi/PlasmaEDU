@@ -7,10 +7,15 @@
 #
 #
 ################################################################################
-
+#%%
 import numpy as np
 import bfield
 import matplotlib.pyplot as plt
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 # Loops ( Ra,I0,Nturns, Xcenter,Ycenter,Zcenter, Ux,Uy,Uz )
 Loops = np.array([[ 0.200,100,10,  0.200,0,0, 90,0,0 ],
@@ -39,14 +44,14 @@ plt.contourf(np.transpose(XX),np.transpose(YY),Bnorm,30)
 plt.colorbar()
 plt.xlabel('X [m]')
 plt.ylabel('Y [m]')
-plt.title('B-field magnitude [T] - Helmholtz Coil')
-plt.savefig('ex07_plot_helmholtz_coil_bnorm.png',dpi=150)
+plt.title('B-field magnitude [T] - Helmholtz Coil \n (run by Toyo at '+current_time+')')
+plt.savefig('ex07_plot_helmholtz_coil_bnorm (run by Toyo at '+current_time+').png',dpi=150)
 plt.show()
 
 plt.figure(2)
 plt.plot(X,Bnorm[:,0]*1e4)
 plt.xlabel('Axis [m]')
 plt.ylabel('B [Gauss]')
-plt.title('B-field magnitude along axis [T] - Helmholtz Coil')
-plt.savefig('ex07_plot_helmholtz_coil_Baxis.png',dpi=150)
+plt.title('B-field magnitude along axis [T] - Helmholtz Coil \n (run by Toyo at '+current_time+')')
+plt.savefig('ex07_plot_helmholtz_coil_Baxis (run by Toyo at '+current_time+').png',dpi=150)
 plt.show()

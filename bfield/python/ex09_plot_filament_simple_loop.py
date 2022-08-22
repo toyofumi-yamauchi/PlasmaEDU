@@ -7,10 +7,15 @@
 #
 #
 ################################################################################
-
+#%%
 import numpy as np
 import matplotlib.pyplot as plt
 import bfield
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 # Simple Current Loop, discretized in Npoints
 Ra       = 0.05
@@ -40,6 +45,6 @@ plt.contourf(np.transpose(XX),np.transpose(YY),Bnorm,30)
 plt.colorbar()
 plt.xlabel('R [m]')
 plt.ylabel('Z [m]')
-plt.title('B-field magnitude [T] of a Current Loop')
-plt.savefig('ex10_plot_filament_simple_loop.png',dpi=150)
+plt.title('B-field magnitude [T] of a Current Loop \n (run by Toyo at '+current_time+')')
+plt.savefig('ex10_plot_filament_simple_loop (run by Toyo at '+current_time+').png',dpi=150)
 plt.show()

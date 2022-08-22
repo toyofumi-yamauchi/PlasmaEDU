@@ -7,10 +7,15 @@
 #
 #
 ################################################################################
-
+#%%
 import bfield
 import numpy as np
 import matplotlib.pyplot as plt
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 # HIDRA geometry
 R0 = 0.72        # [m] Major Radius
@@ -64,8 +69,8 @@ plt.contour(np.transpose(XX),np.transpose(YY),Bnorm,120)
 plt.colorbar()
 plt.xlabel('X [m]')
 plt.ylabel('Y [m]')
-plt.title('B-field magnitude [T] - Simple Toroidal Field')
-plt.savefig('ex08_plot_simple_toroidal_field_bnorm.png',dpi=150)
+plt.title('B-field magnitude [T] - Simple Toroidal Field \n (run by Toyo at '+current_time+')')
+plt.savefig('ex08_plot_simple_toroidal_field_bnorm (run by Toyo at '+current_time+').png',dpi=150)
 plt.show()
 
 plt.figure(2)
@@ -74,6 +79,6 @@ plt.xlim([R0-a0, R0+a0])
 plt.ylim([0,500])
 plt.xlabel('Radius [m]')
 plt.ylabel('B [Gauss]')
-plt.title('B-field magnitude along radius [T] - Simple Toroidal Field')
-plt.savefig('ex08_plot_simple_toroidal_field_baxis.png',dpi=150)
+plt.title('B-field magnitude along radius [T] - Simple Toroidal Field \n (run by Toyo at '+current_time+')')
+plt.savefig('ex08_plot_simple_toroidal_field_baxis (run by Toyo at '+current_time+').png',dpi=150)
 plt.show()
