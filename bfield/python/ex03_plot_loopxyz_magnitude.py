@@ -18,11 +18,13 @@ current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
 print(current_time)
 
 # Current Loop
-Ra = 0.05
+# Ra = 0.05
+Ra = 0.01
 I0 = 100.
 Nturns = 1
 Center = np.array([0,0,0])
-Angles = np.array([90,0,0]) * np.pi/180.0
+# Angles = np.array([90,0,0]) * np.pi/180.0
+Angles = np.array([30,0,0]) * np.pi/180.0
 
 # X,Y Grid
 X = np.linspace(-0.1, 0.1, 50 )

@@ -18,19 +18,20 @@ current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
 print(current_time)
 
 # Loops ( Ra,I0,Nturns, Xcenter,Ycenter,Zcenter, EulerAngles1,2,3 )
-Loops = np.array([[ 0.05,100,1,  0.04,0,0, 90,0,0 ],
-                  [ 0.05,100,1,  0.03,0,0, 90,0,0 ],
-                  [ 0.05,100,1,  0.02,0,0, 90,0,0 ],
-                  [ 0.05,100,1,  0.01,0,0, 90,0,0 ],
-                  [ 0.05,100,1,  0.00,0,0, 90,0,0 ],
-                  [ 0.05,100,1, -0.01,0,0, 90,0,0 ],
-                  [ 0.05,100,1, -0.02,0,0, 90,0,0 ],
-                  [ 0.05,100,1, -0.03,0,0, 90,0,0 ],
-                  [ 0.05,100,1, -0.04,0,0, 90,0,0 ] ])
+EA1 = 30
+Loops = np.array([[ 0.05,100,1,  0.04*np.sin(EA1*np.pi/180.0), 0.04*np.cos(EA1*np.pi/180.0),0, EA1,0,0 ],
+                  [ 0.05,100,1,  0.03*np.sin(EA1*np.pi/180.0), 0.03*np.cos(EA1*np.pi/180.0),0, EA1,0,0 ],
+                  [ 0.05,100,1,  0.02*np.sin(EA1*np.pi/180.0), 0.02*np.cos(EA1*np.pi/180.0),0, EA1,0,0 ],
+                  [ 0.05,100,1,  0.01*np.sin(EA1*np.pi/180.0), 0.01*np.cos(EA1*np.pi/180.0),0, EA1,0,0 ],
+                  [ 0.05,100,1,  0.00*np.sin(EA1*np.pi/180.0), 0.00*np.cos(EA1*np.pi/180.0),0, EA1,0,0 ],
+                  [ 0.05,100,1, -0.01*np.sin(EA1*np.pi/180.0),-0.01*np.cos(EA1*np.pi/180.0),0, EA1,0,0 ],
+                  [ 0.05,100,1, -0.02*np.sin(EA1*np.pi/180.0),-0.02*np.cos(EA1*np.pi/180.0),0, EA1,0,0 ],
+                  [ 0.05,100,1, -0.03*np.sin(EA1*np.pi/180.0),-0.03*np.cos(EA1*np.pi/180.0),0, EA1,0,0 ],
+                  [ 0.05,100,1, -0.04*np.sin(EA1*np.pi/180.0),-0.04*np.cos(EA1*np.pi/180.0),0, EA1,0,0 ] ])
 Nloops = np.size(Loops,0)
 
-X = np.linspace( -0.1, 0.1, 100 )
-Y = np.linspace( -0.1, 0.1, 100 )
+X = np.linspace( -0.1, 0.1, 200 )
+Y = np.linspace( -0.1, 0.1, 200 )
 Bnorm = np.zeros((X.size,Y.size))
 
 for i in range(0,X.size):
@@ -47,6 +48,7 @@ for i in range(0,X.size):
 
 plt.figure(1)
 XX,YY = np.meshgrid(X,Y)
+#plt.contourf(np.transpose(XX),np.transpose(YY),Bnorm,np.linspace(0,0.06,30))
 plt.contourf(np.transpose(XX),np.transpose(YY),Bnorm,30)
 plt.colorbar()
 plt.xlabel('X [m]')

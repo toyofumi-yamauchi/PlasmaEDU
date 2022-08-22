@@ -22,7 +22,8 @@ R = np.linspace(0.001,   0.1, 50 )
 Z = np.linspace( -0.05, 0.05, 50 )
 
 loop_I0    = 100
-loor_Ra    = 0.05
+# loor_Ra    = 0.05
+loor_Ra    = 0.01
 loop_turns = 1
 
 BR = np.zeros((R.size,Z.size))

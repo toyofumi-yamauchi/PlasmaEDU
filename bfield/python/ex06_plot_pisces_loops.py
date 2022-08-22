@@ -27,6 +27,7 @@ Nloops = np.size(Loops,0)
 X = np.linspace(  0.0, 1.7, 100 )
 Y = np.linspace(  1e-10, 0.5, 100 )
 Bnorm = np.zeros((X.size,Y.size))
+print('Y = {:.6f} m'.format(Y[39]))
 
 for i in range(0,X.size):
   for j in range(0,Y.size):
@@ -41,8 +42,10 @@ for i in range(0,X.size):
       Bnorm[i][j] += np.sqrt( Bx*Bx + By*By + Bz*Bz )
 
 plt.figure(1)
-plt.plot(X,Bnorm[:,1]*1e4)
-plt.ylim(250,750)
+#plt.plot(X,Bnorm[:,1]*1e4)
+plt.plot(X,Bnorm[:,39]*1e4)
+#plt.ylim(250,750)
+plt.ylim(250,1450)
 plt.xlabel('Axis [m]')
 plt.ylabel('B [Gauss]')
 plt.title('B-field magnitude [T] - pisces \n (run by Toyo at '+current_time+')')

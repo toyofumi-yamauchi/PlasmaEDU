@@ -18,7 +18,8 @@ current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
 print(current_time)
 
 # Current Loop
-Ra    = 0.05 # [m] Loop Radius
+# Ra    = 0.05 # [m] Loop Radius
+Ra    = 0.01 # [m] Loop Radius 
 I0    = 100  # [A] Loop Current
 turns = 1    # [#] Number of turns
 
