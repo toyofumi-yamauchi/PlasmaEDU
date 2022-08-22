@@ -7,10 +7,16 @@
 #
 #
 ################################################################################
-
+#%%
 import numpy as np
 import matplotlib.pyplot as plt
 import bfield
+
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 R = np.linspace(0.001,   0.1, 50 )
 Z = np.linspace( -0.05, 0.05, 50 )
@@ -34,7 +40,7 @@ plt.contour(np.transpose(RR),np.transpose(ZZ),BR,30)
 plt.colorbar()
 plt.xlabel('R [m]')
 plt.ylabel('Z [m]')
-plt.title('Br, Radial B-field [T] of a Current Loop')
+plt.title('Br, Radial B-field [T] of a Current Loop\n (run by Toyo at '+current_time+')')
 plt.savefig('ex02_plot_loopbrz_components_br.png',dpi=150)
 
 plt.figure(2)
@@ -43,5 +49,5 @@ plt.contour(np.transpose(RR),np.transpose(ZZ),BZ,30)
 plt.colorbar()
 plt.xlabel('R [m]')
 plt.ylabel('Z [m]')
-plt.title('Bz, Axial B-field [T] of a Current Loop')
+plt.title('Bz, Axial B-field [T] of a Current Loop\n (run by Toyo at '+current_time+')')
 plt.savefig('ex02_plot_loopbrz_components_bz.png',dpi=150)

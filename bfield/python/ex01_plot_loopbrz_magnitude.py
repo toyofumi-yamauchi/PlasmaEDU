@@ -40,7 +40,7 @@ plt.colorbar()
 plt.xlabel('R [m]')
 plt.ylabel('Z [m]')
 plt.title('B-field magnitude [T] of a Current Loop \n (run by Toyo at '+current_time+')')
-plt.savefig('ex01_plot_loopbrz_magnitude (Toyo).png',dpi=150)
+plt.savefig('ex01_plot_loopbrz_magnitude\n (run by Toyo at '+current_time+').png',dpi=150)
 plt.show()
 
 # Note on Numpy's contourf([X, Y,] Z, [levels], **kwargs):
