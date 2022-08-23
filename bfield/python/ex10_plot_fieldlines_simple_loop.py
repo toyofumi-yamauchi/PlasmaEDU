@@ -50,7 +50,8 @@ plt.colorbar()
 # Now solve Field Lines
 
 # Initial position of the field line
-Nlines = 10
+#Nlines = 20
+Nlines = 20
 fieldlines_X0     = np.linspace( 0, Ra*0.98, Nlines )
 fieldlines_Y0     = np.linspace( 0,   0,  Nlines )
 fieldlines_Z0     =  np.linspace( 0,   0,  Nlines )
@@ -74,6 +75,6 @@ for i in range(np.size(fieldlines_X0,0)):
 plt.xlabel('R [m]')
 plt.ylabel('Z [m]')
 plt.title('B-field magnitude [T] and Fieldlines of a Current Loop \n (run by Toyo at '+current_time+')')
-plt.savefig('ex09_plot_fieldlines_simple_loop (run by Toyo at '+current_time+').png',dpi=150)
+#plt.savefig('ex10_plot_fieldlines_simple_loop (run by Toyo at '+current_time+').png',dpi=150)
 
 plt.show()

@@ -18,10 +18,13 @@ current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
 print(current_time)
 
 # Simple Current Loop, discretized in Npoints
-Ra       = 0.05
-Center   = np.array([0,0,0])
+#Ra       = 0.05
+Ra       = 0.025
+#Center   = np.array([0,0,0])
+Center   = np.array([0,0.02,0])
 Angles   = np.array([0,0,0]) * np.pi/180.0
-Npoints  = 100
+#Npoints  = 100
+Npoints  = 500
 filament = bfield.makeloop( Ra, Center, Angles, Npoints )
 
 current  = 1000
@@ -46,5 +49,5 @@ plt.colorbar()
 plt.xlabel('R [m]')
 plt.ylabel('Z [m]')
 plt.title('B-field magnitude [T] of a Current Loop \n (run by Toyo at '+current_time+')')
-plt.savefig('ex10_plot_filament_simple_loop (run by Toyo at '+current_time+').png',dpi=150)
+#plt.savefig('ex09_plot_filament_simple_loop (run by Toyo at '+current_time+').png',dpi=150)
 plt.show()
