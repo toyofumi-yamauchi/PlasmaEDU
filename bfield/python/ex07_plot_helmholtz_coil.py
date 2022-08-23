@@ -18,6 +18,8 @@ current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
 print(current_time)
 
 # Loops ( Ra,I0,Nturns, Xcenter,Ycenter,Zcenter, Ux,Uy,Uz )
+#Loops = np.array([[ 0.200,100,10,  0.200,0,0, 90,0,0 ],
+#                  [ 0.200,100,10, -0.200,0,0, 90,0,0 ] ])
 Loops = np.array([[ 0.200,100,10,  0.200,0,0, 90,0,0 ],
                   [ 0.200,100,10, -0.200,0,0, 90,0,0 ] ])
 Nloops = np.size(Loops,0)
