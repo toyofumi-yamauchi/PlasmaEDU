@@ -21,7 +21,8 @@ print(current_time)
 R0 = 0.72        # [m] Major Radius
 a0 = 0.19        # [m] Minor Radius
 Ra = a0 + 0.1265 # [m] Avg Coil Radius
-Ncoils = 40      # [m] Number of toroidal coils
+#Ncoils = 40      # [m] Number of toroidal coils
+Ncoils = 20      # [m] Number of toroidal coils
 I0 = 770         # [A] Current
 Nturns = 13      # [#] Number of turns on each coil
 
