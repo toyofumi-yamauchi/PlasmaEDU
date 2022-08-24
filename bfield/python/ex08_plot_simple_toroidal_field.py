@@ -22,12 +22,13 @@ R0 = 0.72        # [m] Major Radius
 a0 = 0.19        # [m] Minor Radius
 Ra = a0 + 0.1265 # [m] Avg Coil Radius
 #Ncoils = 40      # [m] Number of toroidal coils
-Ncoils = 20      # [m] Number of toroidal coils
+Ncoils = 10      # [m] Number of toroidal coils
 I0 = 770         # [A] Current
 Nturns = 13      # [#] Number of turns on each coil
 
 # Construct the input for the 40 coils
-phi = np.linspace(0.0, 2*np.pi, Ncoils)
+#phi = np.linspace(0.0, 2*np.pi, Ncoils)
+phi = np.linspace(0.0, 2*np.pi, Ncoils+1)
 Loops = np.zeros((Ncoils,9))
 for i in range(0,Ncoils):
   Xcenter = R0 * np.cos( phi[i] )
@@ -71,7 +72,7 @@ plt.colorbar()
 plt.xlabel('X [m]')
 plt.ylabel('Y [m]')
 plt.title('B-field magnitude [T] - Simple Toroidal Field \n (run by Toyo at '+current_time+')')
-plt.savefig('ex08_plot_simple_toroidal_field_bnorm (run by Toyo at '+current_time+').png',dpi=150)
+#plt.savefig('ex08_plot_simple_toroidal_field_bnorm (run by Toyo at '+current_time+').png',dpi=150)
 plt.show()
 
 plt.figure(2)
