@@ -146,7 +146,8 @@ def biotsavart( filament, current, point ):
         R  = np.transpose(point) - midpoint
         Rm = np.sqrt( R[0,0]*R[0,0] + R[0,1]*R[0,1] + R[0,2]*R[0,2] )
         R3 = Rm * Rm * Rm + 1.0e-12
-        dI = current * dl
+        #dI = current * dl
+        dI = current[i] * dl
         dB = 1.0e-7 * np.cross(dI,R) / R3
         B[0] += dB[0,0]
         B[1] += dB[0,1]
