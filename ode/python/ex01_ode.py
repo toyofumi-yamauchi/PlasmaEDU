@@ -1,3 +1,4 @@
+#%%
 import ode
 import numpy as np
 import matplotlib.pyplot as plt
@@ -7,7 +8,7 @@ def fun(t,y):
     return ydot
 
 def main():
-    tn   = np.linspace( 0.0, 2.0, 5 )     # Grid
+    tn   = np.linspace( 0.0, 2.0, 5)     # Grid
     y0   = np.array( [ 0.5 ] )            # Initial condition
     y_ef = ode.euler( fun, tn, y0 )       # Forward Euler
     y_mp = ode.midpoint( fun, tn, y0 )    # Explicit Midpoint
@@ -21,7 +22,10 @@ def main():
     plt.plot( tn, y_an, 'k-',  label='Analytical Solution' )
     plt.xlabel('t')
     plt.ylabel('y')
-    plt.legend(loc=2)
+    plt.legend(loc='best')
+    plt.xticks(np.arange(0,np.max(tn)+0.25,0.25))
+    plt.yticks(np.arange(0,6,0.5))
+    plt.grid()
     plt.savefig('ex01_ode_solution.png')
     plt.show()
 
