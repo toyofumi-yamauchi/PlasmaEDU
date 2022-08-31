@@ -1,3 +1,4 @@
+#%%
 import numpy as np
 from pylab import plot, axis, show, savefig
 from scipy.integrate import odeint
