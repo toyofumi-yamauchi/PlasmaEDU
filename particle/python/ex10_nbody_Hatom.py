@@ -1,7 +1,8 @@
+#%%
 import sys
 import numpy as np
 from pylab import plot, axis, show, savefig
-sys.path.insert(1, '../../ode/python/')
+sys.path.insert(1, '/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/PlasmaEDU/ode/python/')
 import ode
 
 # Physical Constants (SI units, 2019 redefinition)

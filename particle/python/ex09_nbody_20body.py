@@ -1,3 +1,4 @@
+#%%
 import numpy as np
 from pylab import plot, axis, show, xlim, ylim, savefig
 from scipy.integrate import odeint
@@ -31,11 +32,11 @@ m = np.concatenate( (mp*np.ones(Np/2),  me*np.ones(Np/2) ) )
 
 # Characteristic time [s]
 T = 200.0*tb #20.0*tb
-print 'T=',T,' [s]'
+print('T=',T,' [s]')
 
 # Characteristic size of the domain [m]
 L = 100.0*a0
-print 'L=',L,' [m]'
+print('L=',L,' [m]')
 
 Rx = np.random.rand(Np)*L
 Ry = np.random.rand(Np)*L
