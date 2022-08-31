@@ -27,10 +27,11 @@ tb   = 2.0*np.pi*np.sqrt(a0**3/mk)  # Bohr period
 
 # Number of particles
 Np = 2
+Np_half = int(Np/2)
 
 # Charge and Mass
-q = np.concatenate( (qe*np.ones(Np/2), -qe*np.ones(Np/2) ) )
-m = np.concatenate( (mp*np.ones(Np/2),  me*np.ones(Np/2) ) )
+q = np.concatenate( (qe*np.ones(Np_half), -qe*np.ones(Np_half) ) )
+m = np.concatenate( (mp*np.ones(Np_half),  me*np.ones(Np_half) ) )
 
 # Dynamics
 def dynamics(t,Y):
