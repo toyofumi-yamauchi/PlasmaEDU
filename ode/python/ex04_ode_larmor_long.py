@@ -1,3 +1,4 @@
+#%%
 import ode
 import numpy as np
 import matplotlib.pyplot as plt
@@ -62,6 +63,7 @@ def main():
    plt.ylabel('y [r_L]')
    plt.title(str(N_gyroperiods)+' Larmor Gyrations, '+str(N_points_per_gyroperiod)+' points/gyroperiod')
    plt.legend(loc=3)
+   plt.grid()
    plt.savefig('ex04_ode_larmor_long_trajectory.png')
 
    # Plot 2 - Amplitude percent error
@@ -71,6 +73,7 @@ def main():
    plt.ylabel('Percent Amplitude error [%]')
    plt.title('Percent Amplitude Error over '+str(N_gyroperiods)+' Larmor gyrations')
    plt.legend(loc=2)
+   plt.grid()
    plt.savefig('ex04_ode_larmor_long_error.png')
    plt.show()
 
