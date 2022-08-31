@@ -146,6 +146,24 @@ def biotsavart( filament, current, point ):
         R  = np.transpose(point) - midpoint
         Rm = np.sqrt( R[0,0]*R[0,0] + R[0,1]*R[0,1] + R[0,2]*R[0,2] )
         R3 = Rm * Rm * Rm + 1.0e-12
+        dI = current * dl
+        dB = 1.0e-7 * np.cross(dI,R) / R3
+        B[0] += dB[0,0]
+        B[1] += dB[0,1]
+        B[2] += dB[0,2]
+    return B[0], B[1], B[2]
+
+def biotsavart_discretized_current( filament, current, point ):
+    Npoints = np.size(filament,1)
+    B = np.zeros((3,1))
+    for i in range(Npoints-1):
+        P1 = filament[:,i  ]
+        P2 = filament[:,i+1]
+        dl = P2 - P1
+        midpoint = 0.5 * (P1 + P2)
+        R  = np.transpose(point) - midpoint
+        Rm = np.sqrt( R[0,0]*R[0,0] + R[0,1]*R[0,1] + R[0,2]*R[0,2] )
+        R3 = Rm * Rm * Rm + 1.0e-12
         #dI = current * dl
         dI = current[i] * dl
         dB = 1.0e-7 * np.cross(dI,R) / R3
