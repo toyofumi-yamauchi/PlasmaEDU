@@ -50,10 +50,13 @@ def main():
     plt.plot( X_ef[:,0], X_ef[:,1], 'ro-', label='Forward Euler (1st)' )
     plt.plot( X_mp[:,0], X_mp[:,1], 'go-', label='Explicit Mid-Point (2nd)' )
     plt.plot( X_rk[:,0], X_rk[:,1], 'bx-', label='Runge-Kutta (4th)' )
+    plt.xlim((0,1.6))
+    plt.xticks(np.arange(0,1.5+0.1,0.1))
     plt.xlabel('x [m]')
     plt.ylabel('y [m]')
     plt.axis('equal')
     plt.legend(loc=3)
+    plt.grid()
     plt.savefig('ex01_particle_ExB.png')
     plt.show()
 
