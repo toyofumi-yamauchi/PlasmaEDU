@@ -1,8 +1,9 @@
+#%%
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
 
-sys.path.insert(1, '../../ode/python/')
+sys.path.insert(1, '/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/PlasmaEDU/ode/python/')
 import ode
 
 qe = 1.60217662e-19
