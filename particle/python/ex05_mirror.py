@@ -1,10 +1,11 @@
+#%%
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import odeint
 
-sys.path.insert(1, '../../ode/python/')
-sys.path.insert(1, '../../bfield/python/')
+sys.path.insert(1, '/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/PlasmaEDU/ode/python/')
+sys.path.insert(1, '/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/PlasmaEDU/bfield/python/')
 
 import ode
 import bfield
