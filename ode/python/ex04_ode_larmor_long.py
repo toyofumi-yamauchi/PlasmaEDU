@@ -2,6 +2,11 @@
 import ode
 import numpy as np
 import matplotlib.pyplot as plt
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 qe = 1.60217662e-19
 me = 9.10938356e-31
@@ -45,8 +50,8 @@ def main():
    y0 = np.array(( r_L, 0.0, 0.0, 0.0, vy0, 0.0 ))
 
    # Time Grid
-   N_gyroperiods = 100
-   N_points_per_gyroperiod = 10
+   N_gyroperiods = 10
+   N_points_per_gyroperiod = 8
    time_rk = np.linspace( 0.0, N_gyroperiods*tau_L, N_gyroperiods*N_points_per_gyroperiod )
 
    # Runge-Kutta 4
@@ -56,22 +61,25 @@ def main():
    r_rk = np.sqrt( y_rk[:,0]**2 + y_rk[:,1]**2 )
 
    # Plot 1 - Trajectory
-   plt.figure(1)
-   plt.plot( y_rk[:,0]/r_L, y_rk[:,1]/r_L, 'b-', label='Runge-Kutta (4th)' )
+   plt.figure(figsize = (6.0,3.8))
+   plt.plot( y_rk[0,0]/r_L, y_rk[0,1]/r_L, 'o', label='Starting point', linewidth=0.5)
+   plt.plot( y_rk[1,0]/r_L, y_rk[1,1]/r_L, 'o', label='2nd point', linewidth=0.5)
+   plt.plot( y_rk[:,0]/r_L, y_rk[:,1]/r_L, 'b-', label='Runge-Kutta (4th)', linewidth=0.5)
+   plt.plot( y_rk[-1,0]/r_L, y_rk[-1,1]/r_L, 'o', label='Last point', linewidth=0.5)
    plt.axis('equal')
    plt.xlabel('x [r_L]')
    plt.ylabel('y [r_L]')
-   plt.title(str(N_gyroperiods)+' Larmor Gyrations, '+str(N_points_per_gyroperiod)+' points/gyroperiod')
+   plt.title(str(N_gyroperiods)+' Larmor Gyrations, '+str(N_points_per_gyroperiod)+' points/gyroperiod\n (run by Toyo at '+current_time+')')
    plt.legend(loc=3)
    plt.grid()
    plt.savefig('ex04_ode_larmor_long_trajectory.png')
 
    # Plot 2 - Amplitude percent error
-   plt.figure(2)
+   plt.figure(figsize = (6.0,3.8))
    plt.plot( time_rk/tau_L, ode.error_percent( r_L, r_rk), 'bx', label='Runge-Kutta (4th)' )
    plt.xlabel('time / tau_Larmor')
    plt.ylabel('Percent Amplitude error [%]')
-   plt.title('Percent Amplitude Error over '+str(N_gyroperiods)+' Larmor gyrations')
+   plt.title('Percent Amplitude Error over '+str(N_gyroperiods)+' Larmor gyrations\n (run by Toyo at '+current_time+')')
    plt.legend(loc=2)
    plt.grid()
    plt.savefig('ex04_ode_larmor_long_error.png')
