@@ -2,6 +2,11 @@
 import ode
 import numpy as np
 import matplotlib.pyplot as plt
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 qe = 1.60217662e-19
 me = 9.10938356e-31
@@ -60,28 +65,30 @@ def main():
    r_ef = np.sqrt( y_ef[:,0]**2 + y_ef[:,1]**2 )
    r_mp = np.sqrt( y_mp[:,0]**2 + y_mp[:,1]**2 )
    r_rk = np.sqrt( y_rk[:,0]**2 + y_rk[:,1]**2 )
+   r_max = max(max(r_ef),max(r_mp),max(r_rk))
 
    # Plot 1 - Trajectory
-   plt.figure(1)
+   plt.figure(figsize = (6.0,3.8))
    plt.plot( y_ef[:,0], y_ef[:,1], 'ro-', label='Euler-Forward (1st)' )
    plt.plot( y_mp[:,0], y_mp[:,1], 'go-', label='Explicit Mid-Point (2nd)' )
    plt.plot( y_rk[:,0], y_rk[:,1], 'bx-', label='Runge-Kutta (4th)' )
    plt.axis('equal')
+   #plt.ylim((-r_max,r_max))
    plt.xlabel('x [m]')
    plt.ylabel('y [m]')
-   plt.title('One Larmor Gyration')
-   plt.legend(loc=3)
+   plt.title('One Larmor Gyration\n (run by Toyo at '+current_time+')')
+   plt.legend(loc='best')
    plt.grid()
    plt.savefig('ex03_ode_larmor_trajectory.png')
 
    # Plot 2 - Amplitude percent error
-   plt.figure(2)
+   plt.figure(figsize = (6.0,3.8))
    plt.plot( time_ef/tau_L, ode.error_percent( r_L, r_ef), 'ro', label='Forward Euler (1st)' )
    plt.plot( time_mp/tau_L, ode.error_percent( r_L, r_mp), 'go', label='MidPoint (2nd)' )
    plt.plot( time_rk/tau_L, ode.error_percent( r_L, r_rk), 'bx', label='Runge-Kutta (4th)' )
    plt.xlabel('time / tau_Larmor')
    plt.ylabel('Percent Amplitude error [%]')
-   plt.title('Percent Amplitude Error over 1 Larmor gyration ')
+   plt.title('Percent Amplitude Error over 1 Larmor gyration\n (run by Toyo at '+current_time+')')
    plt.legend(loc=2)
    plt.grid()
    plt.savefig('ex03_ode_larmor_error.png')
