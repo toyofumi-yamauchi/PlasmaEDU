@@ -2,6 +2,11 @@
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 sys.path.insert(1, '/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/PlasmaEDU/ode/python/')
 import ode
@@ -99,19 +104,29 @@ def main():
     for i in range(x.size):
         mu[i] = E_kin_perp[i] / Bnorm[i]
 
-    plt.figure(1)
+    plt.figure(figsize = (5.5,3.8))
+    plt.plot( X[0,0], X[0,1], 'o', label='Starting point' )
+    plt.plot( X[1,0], X[1,1], 'o', label='2nd point' )
     plt.plot( X[:,0], X[:,1], 'b-', label='Runge-Kutta (4th)' )
+    plt.plot( X[-1,0], X[-1,1], 'o', label='Last point' )
     plt.xlabel('x [m]')
     plt.ylabel('y [m]')
+    plt.title('Grad-B drift trajectory (x-y)\n (run by Toyo at '+current_time+')')
     plt.axis('equal')
-    plt.legend(loc=3)
+    plt.legend(loc='best')
+    plt.grid()
     plt.savefig('ex02_drift_grad_B_trajectory.png')
     plt.show()
 
-    plt.figure(2)
-    plt.plot( time*1e6, mu )
+    plt.figure(figsize = (5.5,3.8))
+    plt.plot( time[0]*1e6, mu[0],'o', label='Starting point')
+    plt.plot( time[1]*1e6, mu[1],'o', label='2nd point')
+    plt.plot( time*1e6, mu, 'b-', label='Runge-Kutta (4th)')
+    plt.plot( time[-1]*1e6, mu[-1],'o', label='Last point')
     plt.xlabel('time [micro-seconds]')
     plt.ylabel('Magnetic Moment [eV/T]')
+    plt.title('Grad-B drift moment\n (run by Toyo at '+current_time+')')
+    plt.grid()
     plt.savefig('ex02_drift_grad_B_magnetic_moment.png')
     plt.show()
 
