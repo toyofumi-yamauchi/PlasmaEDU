@@ -2,6 +2,11 @@
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 sys.path.insert(1, '/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/PlasmaEDU/ode/python/')
 import ode
@@ -95,21 +100,31 @@ def main():
 
     R = np.sqrt(x*x + y*y)
 
-    plt.figure(1)
+    plt.figure(figsize = (5.5,3.8))
+    plt.plot( x[0], y[0], 'o', label='Starting point' )
+    plt.plot( x[1], y[1], 'o', label='2nd point' )
     plt.plot( x, y, 'b-', label='Runge-Kutta (4th)' )
+    plt.plot( x[-1], y[-1], 'o', label='Last point' )
     plt.xlabel('x [m]')
     plt.ylabel('y [m]')
+    plt.title('Grad-B drift trajectory (x-y)\n (run by Toyo at '+current_time+')')
     plt.axis('equal')
     plt.legend(loc=3)
-    plt.savefig('ex02_drift_grad_B_trajectory.png')
+    plt.grid()
+    plt.savefig('ex03_drift_grad_B_trajectory.png')
     plt.show()
 
-    plt.figure(2)
-    plt.plot( R, z, 'b-')
+    plt.figure(figsize = (5.5,3.8))
+    plt.plot( R[0], z[0], 'o', label='Starting point')
+    plt.plot( R[1], z[1], 'o', label='2nd point')
+    plt.plot( R, z, 'b-', label='Runge-Kutta (4th)')
+    plt.plot( R[-1], z[-1], 'o', label='Last point')
     plt.xlabel('R, Radius [m]')
     plt.ylabel('Z, Vertical Coordinate [m]')
+    plt.title('Grad-B drift trajectory (r-z)\n (run by Toyo at '+current_time+')')
     plt.axis('equal')
-    plt.savefig('ex02_drift_grad_B_vertical_drift.png')
+    plt.grid()
+    plt.savefig('ex03_drift_grad_B_vertical_drift.png')
     plt.show()
 
 

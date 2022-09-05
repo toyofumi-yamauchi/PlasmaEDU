@@ -2,6 +2,11 @@
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 sys.path.insert(1, '/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/PlasmaEDU/ode/python/')
 import ode
@@ -116,20 +121,24 @@ def main():
     w   = np.sqrt(np.absolute(a1))
     tau = 2.0*np.pi / w
 
-    plt.figure(1)
+    plt.figure(figsize = (5.5,3.8))
     plt.plot( time_an,  x_an, 'k-', label='Analytical Solution' )
     plt.plot( time_rk4, x,    'ro', label='Runge-Kutta (4th)' )
     plt.xlabel('t [s]')
     plt.ylabel('x [m]')
-    plt.legend(loc=3)
+    plt.legend(loc=3,framealpha=1)
+    plt.title('\n (run by Toyo at '+current_time+')')
+    plt.grid()
     plt.savefig('ex07_grad_E_linear_x.png')
 
-    plt.figure(2)
+    plt.figure(figsize = (5.5,3.8))
     plt.plot( time_an,  v_an, 'k-', label='Analytical Solution' )
     plt.plot( time_rk4, vx,   'ro', label='Runge-Kutta (4th)' )
     plt.xlabel('t [s]')
     plt.ylabel('v [m/s]')
-    plt.legend(loc=3)
+    plt.legend(loc=3,framealpha=1)
+    plt.title('\n (run by Toyo at '+current_time+')')
+    plt.grid()
     plt.savefig('ex07_grad_E_linear_v.png')
     plt.show()
 

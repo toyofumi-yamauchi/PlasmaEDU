@@ -3,6 +3,11 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import odeint
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 sys.path.insert(1, '/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/PlasmaEDU/ode/python/')
 
@@ -86,19 +91,30 @@ def main():
    vp = np.sqrt( vx*vx + vy*vy )
 
    # Plot 1 - Trajectory
-   plt.figure(1)
+   plt.figure(figsize=(5.5,3.8))
+   plt.plot( x[0], y[0], 'o', label='Starting point' )
+   plt.plot( x[1], y[1], 'o', label='2nd point' )
    plt.plot( x, y, 'b-', label='RK4' )
+   plt.plot( x[-1], y[-1], 'o', label='Last point' )
    plt.xlabel('x [m]')
    plt.ylabel('y [m]')
+   plt.title('Polarization drift trajectory (x-y)\n (run by Toyo at '+current_time+')')
    plt.axis('equal')
    plt.legend()
-   plt.savefig('ex06_polarization_trajectory.png',dpi=200)
+   plt.grid()
+   plt.savefig('ex06_polarization_trajectory.png',dpi=150)
 
-   plt.figure(2)
+    
+   plt.figure(figsize=(5.5,3.8))
+   plt.plot( time[0]/tau_L, x[0], 'b-', label='Starting point' )
+   plt.plot( time[1]/tau_L, x[1], 'b-', label='2nd point' )
    plt.plot( time/tau_L, x, 'b-', label='RK4' )
+   plt.plot( time[-1]/tau_L, x[-1], 'b-', label='Last point' )
    plt.xlabel('time / tau_L')
    plt.ylabel('x position [m]')
-   plt.savefig('ex06_polarization_position.png',dpi=200)
+   plt.title('Polarization drift shift\n (run by Toyo at '+current_time+')')
+   plt.grid()
+   plt.savefig('ex06_polarization_position.png',dpi=150)
 
 
 if __name__ == '__main__':

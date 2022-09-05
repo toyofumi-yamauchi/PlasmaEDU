@@ -2,6 +2,11 @@
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 sys.path.insert(1, '/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/PlasmaEDU/ode/python/')
 import ode
@@ -13,7 +18,7 @@ mp = 1.6726219e-27
 def fun(t,X):
    x, y, z, vx, vy, vz = X
    # Charge-to-mass ratio (q/m)
-   qm = qe/me
+   qm = -qe/me
    # E-field [V/m]
    Ex = 0.0
    Ey = 100.0
@@ -46,7 +51,7 @@ def main():
     # for i in range(0,xn.size):
     #     print xn[i], y_an[i], y_ef[i,0], y_mp[i,0], y_rk[i,0]
 
-    plt.figure(1)
+    plt.figure(figsize = (5.5,3.8))
     plt.plot( X_ef[:,0], X_ef[:,1], 'ro-', label='Forward Euler (1st)' )
     plt.plot( X_mp[:,0], X_mp[:,1], 'go-', label='Explicit Mid-Point (2nd)' )
     plt.plot( X_rk[:,0], X_rk[:,1], 'bx-', label='Runge-Kutta (4th)' )
@@ -54,10 +59,11 @@ def main():
     plt.xticks(np.arange(-0.1,1.5+0.1,0.1))
     plt.xlabel('x [m]')
     plt.ylabel('y [m]')
+    plt.title('Comparison of the ExB drift trajectory \n (run by Toyo at '+current_time+')')
     plt.axis('equal')
     plt.legend(loc=3)
     plt.grid()
-    plt.savefig('ex01_particle_ExB.png')
+    plt.savefig('ex01_particle_ExB.png',dpi=150)
     plt.show()
 
 if __name__ == '__main__':

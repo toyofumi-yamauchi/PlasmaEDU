@@ -3,6 +3,11 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import odeint
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 sys.path.insert(1, '/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/PlasmaEDU/ode/python/')
 sys.path.insert(1, '/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/PlasmaEDU/bfield/python/')
@@ -58,8 +63,6 @@ def fun(t,X):
     Xdot[5] = qm * ( Ez + vx*By - vy*Bx )
     return Xdot
 
-
-
 def main():
 
    # Initial velocity [m/s]
@@ -108,8 +111,8 @@ def main():
    Zloop = Ra * np.sin(theta)
 
    # Plot 1 - Trajectory
-   plt.figure(1)
-   plt.plot( x, z, 'b-', label='orbit' )
+   plt.figure(figsize = (5.5,3.8))
+   plt.plot( x, z, 'b-', label='trajectory' )
    plt.plot( Xloop, Yloop, 'r', label='loop')
    plt.xlabel('x [m]')
    plt.ylabel('z [m]')
@@ -135,25 +138,34 @@ def main():
        Y0 = np.array([ fieldlines_X0[i], fieldlines_Y0[i],fieldlines_Z0[i],fieldlines_direction[i]])
        interval = x=np.arange(0.0,fieldlines_length[i],1e-4)
        fieldlines = odeint(bfield.blines, Y0, interval, args=(filament, I0) )
-       plt.plot( fieldlines[:,0], fieldlines[:,1], 'k-' )
+       plt.plot( fieldlines[:,0], fieldlines[:,1], 'k-')
        # Bottom portion
        Y0 = np.array([ fieldlines_X0[i], fieldlines_Y0[i],fieldlines_Z0[i],-fieldlines_direction[i]])
        interval = x=np.arange(0.0,fieldlines_length[i],1e-4)
        fieldlines = odeint(bfield.blines, Y0, interval, args=(filament, I0) )
        plt.plot( fieldlines[:,0], fieldlines[:,1], 'k-' )
+   plt.plot(0,0,'k-',label='B-field lines')
    plt.xlim([0, 1.5*Ra])
    plt.ylim([-0.1*Ra, 1.4*Ra])
    plt.xlabel('X [m]')
    plt.ylabel('Z [m]')
-   plt.title('Mirroring of a particle launched toward a current loop')
+   plt.title('Mirroring of a particle launched toward a current loop\n (run by Toyo at '+current_time+')')
+   plt.grid()
+   plt.legend(loc='best',framealpha=1)
    plt.savefig('ex05_mirror_trajectory.png',dpi=150)
    plt.show()
-
-   plt.figure(2)
+   
+   print(time[94]*1e6)
+   print(vz[94])
+   print(time[95]*1e6)
+   print(vz[95])
+   plt.figure(figsize = (5.5,3.8))
    plt.plot(time*1e6, vz)
+   plt.plot(np.array([time[0]*1e6,time[95]*1e6]),np.array([0,0]),'k-')
    plt.xlabel('time [micro-seconds]')
    plt.ylabel('Vz [m/s]')
-   plt.title('Velocity along the axis of the current loop')
+   plt.title('Velocity along the axis of the current loop\n (run by Toyo at '+current_time+')')
+   plt.grid()
    plt.savefig('ex05_mirror_vaxial.png',dpi=150)
    plt.show()
 
