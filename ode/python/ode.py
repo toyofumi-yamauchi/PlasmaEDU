@@ -72,6 +72,30 @@ def rk4( fun, x, y0 ):
       y[n+1,:] = y[n,:] + k1/6.0 + k2/3.0 + k3/3.0 + k4/6.0
    return y
 
+<<<<<<< Updated upstream
+=======
+# Runge-Kutta 4th for 2nd order ODE
+def rk4_2nd(f, g, t, initial_xv):
+   N = np.size( t )
+   h = t[1] - t[0]
+   I = np.size( initial_xv )
+   xv = np.zeros((N,I))
+   xv[:,0] = initial_xv[0]
+   xv[:,1] = initial_xv[1]
+   for n in range(0, N-1):
+      k1 = h * f(t[n],       xv[n,0],        xv[n,1])
+      l1 = h * g(t[n],       xv[n,0],        xv[n,1])
+      k2 = h * f(t[n]+h/2.0, xv[n,0]+k1/2.0, xv[n,1]+l1/2.0)
+      l2 = h * g(t[n]+h/2.0, xv[n,0]+k1/2.0, xv[n,1]+l1/2.0)
+      k3 = h * f(t[n]+h/2.0, xv[n,0]+k2/2.0, xv[n,1]+l2/2.0)
+      l3 = h * g(t[n]+h/2.0, xv[n,0]+k2/2.0, xv[n,1]+l2/2.0)
+      k4 = h * f(t[n]+h    , xv[n,0]+k3    , xv[n,1]+l3    )
+      l4 = h * g(t[n]+h    , xv[n,0]+k3    , xv[n,1]+l3    )
+      #print(k1,l1,k2,l2,k3,l3,k4,l4)
+      xv[n+1,0] = xv[n,0] + k1/6.0 + k2/3.0 + k3/3.0 + k4/6.0
+      xv[n+1,1] = xv[n,1] + l1/6.0 + l2/3.0 + l3/3.0 + l4/6.0
+   return xv
+>>>>>>> Stashed changes
 
 def error_absolute( y_reference, y_approx ):
    e_abs = np.abs( y_reference - y_approx )
