@@ -75,7 +75,7 @@ def rk4( fun, x, y0 ):
 # Runge-Kutta 4th for 2nd order ODE
 def rk4_2nd(f, g, t, initial):
    N = np.size( t )
-   h = t[1] = t[0]
+   h = t[1] - t[0]
    I = np.size(initial)
    xv = np.zeros((N,I))
    xv[:,0] = initial[0]
@@ -89,6 +89,7 @@ def rk4_2nd(f, g, t, initial):
       l3 = h * g(t[n]+h/2.0, xv[n,0]+k2/2.0, xv[n,1]+l2/2.0)
       k4 = h * f(t[n]+h    , xv[n,0]+k3    , xv[n,1]+l3    )
       l4 = h * g(t[n]+h    , xv[n,0]+k3    , xv[n,1]+l3    )
+      #print(k1,l1,k2,l2,k3,l3,k4,l4)
       xv[n+1,0] = xv[n,0] + k1/6.0 + k2/3.0 + k3/3.0 + k4/6.0
       xv[n+1,1] = xv[n,1] + l1/6.0 + l2/3.0 + l3/3.0 + l4/6.0
    return xv

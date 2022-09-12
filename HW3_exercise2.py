@@ -10,10 +10,10 @@ def f(t,x,v):
     x_dot = v
     return x_dot
 def g(t,x,v):
-    v_dot = -t*x
+    v_dot = -x
     return v_dot
 
-Omega_t = np.linspace(0,2*2*np.pi,21)
+Omega_t = np.linspace(0,2*2*np.pi,41)
 two_pi = 2.0*np.pi
 
 x_ana = np.cos(Omega_t)
@@ -23,11 +23,10 @@ xv_rk4 = ode.rk4_2nd(f, g, Omega_t, np.array([1.0,0.0]))
 x_rk4 = xv_rk4[:,0]
 x_rk4 = np.reshape(x_rk4,(len(x_rk4),1 ))
 
-Omega_t = np.linspace(0,2*2*np.pi,21)
+Omega_t = np.linspace(0,2*2*np.pi,41)
 two_pi = 2.0*np.pi
 plt.figure(figsize=(5.5,3.8))
 plt.plot(np.linspace(0,2*2*np.pi,101)/two_pi,np.cos(np.linspace(0,2*2*np.pi,101)),'k-',label='Analytical Solution')
-plt.plot(Omega_t/two_pi,x_ana,'ko')
 plt.plot(Omega_t/two_pi,x_rk4,'ro',label='Runge-Kutta (4th)')
 #plt.xlim([0,2.0])
 plt.xticks(np.arange(0,2.0+0.5,0.5))
@@ -42,7 +41,7 @@ plt.tight_layout()
 plt.savefig('HW3_exercise2_plot.png',dpi=150)
 
 plt.figure(figsize=(5.5,3.8))
-plt.plot(Omega_t/two_pi,ode.error_absolute(x_ana,x_rk4),'r-',label='Runge-Kutta (4th)')
+plt.plot(Omega_t/two_pi,ode.error_absolute(x_ana,x_rk4),'ro-',label='Runge-Kutta (4th)')
 #plt.xlim([0,2.0])
 plt.xticks(np.arange(0,2.0+0.5,0.5))
 plt.xlabel('time, tΩ/2π')
