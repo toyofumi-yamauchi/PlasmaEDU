@@ -13,12 +13,8 @@ def g(t,x,v):
     v_dot = -x
     return v_dot
 
-Omega_t = np.linspace(0,2*2*np.pi,41)
-print(Omega_t)
-print(Omega_t[1]-Omega_t[0])
-print(np.arcsin((Omega_t[1]-Omega_t[0])/2))
-print(np.arcsin((Omega_t[1]-Omega_t[0])/2)/(Omega_t[1]-Omega_t[0])/2)
-
+num_points = 41
+Omega_t = np.linspace(0,2*2*np.pi,num_points)
 two_pi = 2.0*np.pi
 
 x_ana = np.cos(Omega_t)
@@ -36,7 +32,7 @@ xv_leap_f = ode.leapfrog_2nd_f_correction(f,g,Omega_t,np.array([1.0,0.0]))
 x_leap_f = xv_leap_f[:,0]
 x_leap_f = np.reshape(x_leap_f,(len(x_leap),1 ))
 
-Omega_t = np.linspace(0,2*2*np.pi,41)
+Omega_t = np.linspace(0,2*2*np.pi,num_points)
 two_pi = 2.0*np.pi
 plt.figure(figsize=(5.5,3.8))
 plt.plot(np.linspace(0,2*2*np.pi,101)/two_pi,np.cos(np.linspace(0,2*2*np.pi,101)),'k-',label='Analytical Solution')
@@ -62,9 +58,27 @@ plt.plot(Omega_t/two_pi,ode.error_absolute(x_ana,x_leap_f),'go-',label='Leapfrog
 #plt.xlim([0,2.0])
 plt.xticks(np.arange(0,2.0+0.5,0.5))
 plt.xlabel('time, tΩ/2π')
+plt.ylim((0,0.05))
+plt.yticks(np.arange(0,0.05+0.01,0.01))
 plt.ylabel('Absolute error')
 plt.title('Absolute Error')
 plt.legend(loc='best',framealpha=1)
 plt.grid()
 plt.tight_layout()
-plt.savefig('HW3_exercise2_error.png',dpi=150)
+plt.savefig('HW3_exercise2_error (full).png',dpi=150)
+
+plt.figure(figsize=(5.5,3.8))
+plt.plot(Omega_t/two_pi,ode.error_absolute(x_ana,x_rk4),   'ro-',label='Runge-Kutta (4th)')
+#plt.plot(Omega_t/two_pi,ode.error_absolute(x_ana,x_leap),  'bo-',label='Leapfrog (w/o freq. correction)')
+plt.plot(Omega_t/two_pi,ode.error_absolute(x_ana,x_leap_f),'go-',label='Leapfrog (w/  freq. correction)')
+#plt.xlim([0,2.0])
+plt.xticks(np.arange(0,2.0+0.5,0.5))
+plt.xlabel('time, tΩ/2π')
+plt.ylim((0,0.002))
+plt.yticks(np.arange(0,0.002+0.0005,0.0005))
+plt.ylabel('Absolute error')
+plt.title('Absolute Error')
+plt.legend(loc='best',framealpha=1)
+plt.grid()
+plt.tight_layout()
+plt.savefig('HW3_exercise2_error (closeup).png',dpi=150)
