@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 sys.path.insert(1, '/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/PlasmaEDU/ode/python/')
 import ode
 
+
 def f(t,x,v):
     x_dot = v
     return x_dot
@@ -88,6 +89,8 @@ plt.figure(figsize=(5.5,3.8))
 #plt.plot(Omega_t/two_pi,ode.error_absolute(x_ana,x_leap),  'bo-',label='Leapfrog (w/o freq. correction)')
 plt.plot(Omega_t/two_pi,ode.error_absolute(x_ana,x_leap_f),'go-',label='Leapfrog (w/  freq. correction)')
 #plt.xlim([0,2.0])
+plt.plot(Omega_t/two_pi,ode.error_absolute(x_ana,x_rk4),'ro-',label='Runge-Kutta (4th)')
+plt.xlim([0,2.0])
 plt.xticks(np.arange(0,2.0+0.5,0.5))
 plt.xlabel('time, tΩ/2π')
 #plt.ylim((0,1e-3))
