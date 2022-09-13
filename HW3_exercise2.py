@@ -23,11 +23,16 @@ xv_rk4 = ode.rk4_2nd(f, g, Omega_t, np.array([1.0,0.0]))
 x_rk4 = xv_rk4[:,0]
 x_rk4 = np.reshape(x_rk4,(len(x_rk4),1 ))
 
+xv_leap = ode.leapfrog_2nd(f,g,Omega_t,np.array([1.0,0.0]))
+x_leap = xv_leap[:,0]
+x_leap = np.reshape(x_leap,(len(x_leap),1 ))
+
 Omega_t = np.linspace(0,2*2*np.pi,41)
 two_pi = 2.0*np.pi
 plt.figure(figsize=(5.5,3.8))
 plt.plot(np.linspace(0,2*2*np.pi,101)/two_pi,np.cos(np.linspace(0,2*2*np.pi,101)),'k-',label='Analytical Solution')
-plt.plot(Omega_t/two_pi,x_rk4,'ro',label='Runge-Kutta (4th)')
+plt.plot(Omega_t/two_pi,x_rk4, 'ro',label='Runge-Kutta (4th)')
+plt.plot(Omega_t/two_pi,x_leap,'bo',label='Leapfrog (w/o freq. correction)')
 #plt.xlim([0,2.0])
 plt.xticks(np.arange(0,2.0+0.5,0.5))
 plt.xlabel('time, tΩ/2π')
