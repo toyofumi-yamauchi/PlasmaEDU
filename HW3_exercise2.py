@@ -14,6 +14,11 @@ def g(t,x,v):
     return v_dot
 
 Omega_t = np.linspace(0,2*2*np.pi,41)
+print(Omega_t)
+print(Omega_t[1]-Omega_t[0])
+print(np.arcsin((Omega_t[1]-Omega_t[0])/2))
+print(np.arcsin((Omega_t[1]-Omega_t[0])/2)/(Omega_t[1]-Omega_t[0])/2)
+
 two_pi = 2.0*np.pi
 
 x_ana = np.cos(Omega_t)
@@ -53,7 +58,7 @@ plt.savefig('HW3_exercise2_plot.png',dpi=150)
 plt.figure(figsize=(5.5,3.8))
 plt.plot(Omega_t/two_pi,ode.error_absolute(x_ana,x_rk4),   'ro-',label='Runge-Kutta (4th)')
 plt.plot(Omega_t/two_pi,ode.error_absolute(x_ana,x_leap),  'bo-',label='Leapfrog (w/o freq. correction)')
-plt.plot(Omega_t/two_pi,ode.error_absolute(x_ana,x_leap_f),'go-',label='Leapfrog (w/o freq. correction)')
+plt.plot(Omega_t/two_pi,ode.error_absolute(x_ana,x_leap_f),'go-',label='Leapfrog (w/  freq. correction)')
 #plt.xlim([0,2.0])
 plt.xticks(np.arange(0,2.0+0.5,0.5))
 plt.xlabel('time, tΩ/2π')
