@@ -223,3 +223,15 @@ def leapfrog_2nd(f,g,t,initial):
       xv[n+1,0] = (1-h**2/2) *xv[n,0] + (h)       *xv[n,1]
       xv[n+1,1] = (-h+h**3/4)*xv[n,0] + (1-h**2/2)*xv[n,1]
    return xv
+
+def leapfrog_2nd_f_correction(f,g,t,initial):
+   N = np.size( t )
+   h = t[1] - t[0]
+   I = np.size(initial)
+   xv = np.zeros((N,I))
+   xv[:,0] = initial[0]
+   xv[:,1] = initial[1]
+   for n in range(0, N-1):
+      xv[n+1,0] = (1-h**2/2) *xv[n,0] + (h)       *xv[n,1]
+      xv[n+1,1] = (-h+h**3/4)*xv[n,0] + (1-h**2/2)*xv[n,1]
+   return xv
