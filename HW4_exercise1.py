@@ -3,7 +3,7 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 
-freq_correction = True
+freq_correction = False
 
 def frequency_correction(x):
     if freq_correction == True:
@@ -127,7 +127,7 @@ z_0 = 0.0
 X0 = np.array((x_0,y_0,z_0,v_x_0,v_y_0,v_z_0))
 
 # Time grid
-num_cyclotron = 100
+num_cyclotron = 2
 num_steps_per_cyclotron = 15
 time = np.linspace(0.0,tau_c*num_cyclotron,num_cyclotron*num_steps_per_cyclotron)
 dt = time[1] - time[0]
