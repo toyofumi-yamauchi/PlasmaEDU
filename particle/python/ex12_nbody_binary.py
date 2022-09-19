@@ -1,9 +1,14 @@
 #%%
 import sys
 import numpy as np
-from pylab import plot, axis, show, savefig
+from pylab import plot, axis, show, savefig,title,xlabel,ylabel
 sys.path.insert(1, '/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/PlasmaEDU//ode/python/')
 import ode
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 # Physical Constants (SI units, 2019 redefinition)
 qe   = 1.602176634e-19       # fundamental charge [C]
@@ -80,7 +85,8 @@ def main():
     Vy = np.zeros(Np)
     Vz = np.zeros(Np)
 
-    print(0.5*mp*Vx[1]*Vx[1]/qe)
+    E_in = 0.5*mp*Vx[1]*Vx[1]/qe
+    print(E_in)
 
     Y0 = np.concatenate( ( Rx, Ry, Rz, Vx, Vy, Vz ) )
 
@@ -102,7 +108,10 @@ def main():
     # Plot results
     plot( Rx/a0, Ry/a0, 'bo-')
     axis('equal')
-    savefig('nbody_binary.png',dpi=200)
+    xlabel('x, m')
+    ylabel('y, m')
+    title('top: proton (E = {:.0f} eV), bottom: proton initially at rest\n (run by Toyo at {})'.format(E_in,current_time))
+    savefig('ex12_nbody_binary.png',dpi=200)
     show()
 
 

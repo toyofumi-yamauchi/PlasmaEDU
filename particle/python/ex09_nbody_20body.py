@@ -1,7 +1,12 @@
 #%%
 import numpy as np
-from pylab import plot, axis, show, xlim, ylim, savefig
+from pylab import plot, axis, show, xlim, ylim, savefig, legend, title,xlabel,ylabel
 from scipy.integrate import odeint
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 # Physical Constants (SI units, 2019 redefinition)
 qe   = 1.602176634e-19       # fundamental charge [C]
@@ -33,11 +38,13 @@ m = np.concatenate( (mp*np.ones(Np_half),  me*np.ones(Np_half) ) )
 
 # Characteristic time [s]
 T = 200.0*tb #20.0*tb
-print('T=',T,' [s]')
+#T = 200.0*tb
+print('Simulation period (200*Bohr period) = {:.2e} [s]'.format(T))
 
 # Characteristic size of the domain [m]
 L = 100.0*a0
-print('L=',L,' [m]')
+#L = 1e-9
+print('Simulation domain size (100*Bohr radius) = {:.2e} [m]'.format(L))
 
 Rx = np.random.rand(Np)*L
 Ry = np.random.rand(Np)*L
@@ -146,8 +153,14 @@ Vz = Y[ :, 5*Np:6*Np ]
 
 # Plot
 plot( Rx[:,0:Np_half], Ry[:,0:Np_half], 'ro-') # protons
-plot( Rx[:,Np_half:Np], Ry[:,Np_half:Np], 'b-') # electrons
+plot( Rx[:,Np_half:Np], Ry[:,Np_half:Np], 'b.-') # electrons
+plot(-1,-1,'ro-',label='proton')
+plot(-1,-1,'b.-',label='electron')
 xlim([ 0, L ])
 ylim([ 0, L ])
-savefig('nbody_1.png',dpi=200)
+xlabel('x, m')
+ylabel('y, m')
+legend()
+title('{}proton-{}electron trajectory\n (run by Toyo at {})'.format(Np_half,Np_half,current_time))
+savefig('ex09_N={}body.png'.format(Np),dpi=150)
 show()
