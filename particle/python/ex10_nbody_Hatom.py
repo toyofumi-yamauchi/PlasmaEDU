@@ -1,9 +1,14 @@
 #%%
 import sys
 import numpy as np
-from pylab import plot, axis, show, savefig
+from pylab import plot, axis, show, savefig, title,legend,xlabel,ylabel
 sys.path.insert(1, '/Users/toyo/Library/CloudStorage/GoogleDrive-ty20@illinois.edu/My Drive/NPRE598 Computational Plasma Physics/PlasmaEDU/ode/python/')
 import ode
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 # Physical Constants (SI units, 2019 redefinition)
 qe   = 1.602176634e-19       # fundamental charge [C]
@@ -98,9 +103,24 @@ def main():
     Vz = Y[ :, 5*Np:6*Np]
 
     # Plot results
-    plot( Rx, Ry, 'b.-')
+    plot( Rx[:,0:1], Ry[:,0:1], 'ro-',label='proton')
+    plot( Rx[:,1:2], Ry[:,1:2], 'b.-',label='electron')
     axis('equal')
-    savefig('nbody_Hatom.png',dpi=200)
+    xlabel('x, m')
+    ylabel('y, m')
+    legend()
+    title('H atom model (1proton-1electron)\n (run by Toyo at {})'.format(current_time))
+    savefig('ex10_nbody_Hatom_overall.png',dpi=150)
+    show()
+
+    plot( Rx[:,0:1], Ry[:,0:1], 'ro-',label='proton')
+    #plot( Rx[:,1:2], Ry[:,1:2], 'b.-',label='electron')
+    axis('equal')
+    xlabel('x, m')
+    ylabel('y, m')
+    legend()
+    title('H atom model (1proton-1electron)\n (run by Toyo at {})'.format(current_time))
+    savefig('ex10_nbody_Hatom_proton.png',dpi=150)
     show()
 
 

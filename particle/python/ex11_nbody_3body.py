@@ -1,7 +1,12 @@
 #%%
 import numpy as np
-from pylab import plot, axis, show, savefig
+from pylab import plot, axis, show, savefig,legend,title,xlabel,ylabel
 from scipy.integrate import odeint
+from datetime import datetime
+
+now = datetime.now()
+current_time = now.strftime("%Y-%m-%d %H:%M:%S %p")
+print(current_time)
 
 # Physical Constants (SI units, 2019 redefinition)
 qe   = 1.602176634e-19       # fundamental charge [C]
@@ -118,7 +123,7 @@ def main():
     Ry3 = a0
     Rz3 = 0.0
 
-    Energy_eV = 30.0  # 10.0, 13.6, 30.0, 5000.0, 10000.0
+    Energy_eV = 2000  # 10.0, 13.6, 30.0
     Vx3 = np.sqrt(2.0*Energy_eV*qe/me)
     Vy3 = 0.0
     Vz3 = 0.0
@@ -147,11 +152,15 @@ def main():
     Vz = Y[ :, 5*Np:6*Np ]
 
     # Plot results
-    plot( Rx[:,0], Ry[:,0], 'ro-')
-    plot( Rx[:,1], Ry[:,1], 'b-')
-    plot( Rx[:,2], Ry[:,2], 'k-')
+    plot( Rx[:,0], Ry[:,0], 'ro-',label='proton of H')
+    plot( Rx[:,1], Ry[:,1], 'b-',label='electron of H')
+    plot( Rx[:,2], Ry[:,2], 'k-',label='incident electron')
     axis('equal')
-    savefig('nbody_3body.png',dpi=200)
+    xlabel('x, m')
+    ylabel('y, m')
+    legend()
+    title('Electron scattering w/ stationary H atom (E_in = {} eV)\n (run by Toyo at {})'.format(Energy_eV,current_time))
+    savefig('ex11_nbody_3body, E = {} eV.png'.format(Energy_eV),dpi=200)
     show()
 
 if __name__ == '__main__':
