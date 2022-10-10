@@ -1,3 +1,4 @@
+#%%
 #  Simple 1D Diffusion-Advection-Reaction problem
 #
 #   du          du         d^2 u
